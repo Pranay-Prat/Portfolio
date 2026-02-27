@@ -1,26 +1,145 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* ===== CUSTOM THEME TOKENS ===== */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-border: var(--border-color);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ===== DARK MODE (default) ===== */
+:root,
+[data-theme="dark"] {
+  --background: #000000;
+  --foreground: #ffffff;
+  --surface: #111111;
+  --surface-hover: #1a1a1a;
+  --border-color: #222222;
+  --muted: #888888;
+  --accent: #10b981;
+  --accent-hover: #059669;
+  --dotted-border: #333333;
+  --overlay-bg: rgba(0, 0, 0, 0.7);
+  --hero-overlay: rgba(0, 0, 0, 0.6);
+  --navbar-bg: rgba(0, 0, 0, 0.85);
+  --tag-bg: #1a1a1a;
+  --tag-text: #cccccc;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== LIGHT MODE ===== */
+[data-theme="light"] {
+  --background: #ffffff;
+  --foreground: #000000;
+  --surface: #f5f5f5;
+  --surface-hover: #eeeeee;
+  --border-color: #e0e0e0;
+  --muted: #555555;
+  --accent: #10b981;
+  --accent-hover: #059669;
+  --dotted-border: #cccccc;
+  --overlay-bg: rgba(0, 0, 0, 0.4);
+  --hero-overlay: rgba(255, 255, 255, 0.5);
+  --navbar-bg: rgba(255, 255, 255, 0.85);
+  --tag-bg: #333333;
+  --tag-text: #ffffff;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== BASE STYLES ===== */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter, "Inter", system-ui, -apple-system, sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ===== FULL-PAGE DOTTED MARGIN WRAPPER ===== */
+.page-wrapper {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  min-height: 100vh;
+}
+
+.page-wrapper::before,
+.page-wrapper::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  border-left: 1px dashed var(--dotted-border);
+  pointer-events: none;
+  z-index: 100;
+  transition: border-color 0.3s ease;
+}
+
+.page-wrapper::before {
+  left: max(0px, calc(50% - 500px));
+}
+
+.page-wrapper::after {
+  right: max(0px, calc(50% - 500px));
+}
+
+/* ===== DOTTED BUTTON STYLE ===== */
+.btn-dotted {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  border: 1px dashed var(--dotted-border);
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--foreground);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-dotted:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* ===== SELECTION ===== */
+::selection {
+  background-color: var(--accent);
+  color: #fff;
 }
