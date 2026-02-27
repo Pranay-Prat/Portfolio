@@ -134,7 +134,6 @@ function ProjectCard({ project }: { project: Project }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-dotted text-xs py-1 px-2.5"
-                  style={{ color: "var(--accent)", borderColor: "var(--accent)" }}
                 >
                   Live
                 </a>
@@ -226,7 +225,7 @@ export default function ProjectsSection() {
           <motion.span
             className="inline-flex items-center gap-2 text-sm font-medium cursor-pointer"
             style={{ color: "var(--muted)" }}
-            whileHover={{ x: 4, color: "var(--accent)" }}
+            whileHover={{ x: 4, color: "var(--foreground)" }}
             transition={{ duration: 0.2 }}
           >
             View all projects

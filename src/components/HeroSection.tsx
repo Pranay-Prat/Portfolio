@@ -14,7 +14,6 @@ export default function HeroSection() {
         style={{
           border: "1px dashed var(--dotted-border)",
           backgroundColor: "var(--surface)",
-          minHeight: "300px",
         }}
       >
         {/* Video / Animated background */}
@@ -42,14 +41,13 @@ export default function HeroSection() {
 
         {/* Available badge only */}
         <div
-          className="relative z-10 flex items-end justify-end p-6 sm:p-8"
-          style={{ minHeight: "300px" }}
+          className="relative z-10 flex items-end justify-end p-6 sm:p-8 min-h-[180px] sm:min-h-[300px]"
         >
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.6, duration: 0.4 }}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium"
+            className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium"
             style={{
               backgroundColor: "rgba(16, 185, 129, 0.1)",
               border: "1px solid var(--accent)",
@@ -69,7 +67,7 @@ export default function HeroSection() {
       </motion.div>
 
       {/* Intro text below hero card */}
-      <div className="mt-10">
+      <div className="mt-10 text-center sm:text-left px-4 sm:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -77,11 +75,12 @@ export default function HeroSection() {
         >
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
             Hi, I&apos;m{" "}
-            <span style={{ color: "var(--foreground)" }}>Pranay</span>
+            <span style={{ color: "var(--foreground)" }}>Pranay</span>{" "}
+            <span style={{ color: "var(--muted)" }}>&mdash;</span>
           </h1>
 
           <div
-            className="flex flex-wrap items-center gap-2 sm:gap-3 mt-3 text-sm font-medium"
+            className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3 mt-3 text-sm font-medium"
             style={{ color: "var(--muted)" }}
           >
             <span>frontend</span>
@@ -99,34 +98,77 @@ export default function HeroSection() {
           className="mt-6 text-sm sm:text-base leading-relaxed max-w-2xl"
           style={{ color: "var(--muted)" }}
         >
-          I craft smooth interfaces, power them with logic, and deploy like a
-          reflex. Available for freelance or full-time roles.
+          They call me{" "}
+          <span className="inline-highlight">Pranay</span>.
+          {" "}What kind of name is that? I craft smooth interfaces, power them
+          with logic, and deploy like a reflex.
         </motion.p>
 
-        {/* Social links — dotted buttons */}
-        <motion.div
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.5 }}
+          className="mt-4 text-sm sm:text-base leading-loose max-w-2xl"
+          style={{ color: "var(--muted)" }}
+        >
+          Open to freelance gigs or full-time roles. Slide into my{" "}
+          <a
+            href="https://x.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-tag"
+          >
+            DMs
+          </a>{" "}
+          or{" "}
+          <a
+            href="mailto:your@email.com"
+            className="inline-tag"
+          >
+            Email
+          </a>{" "}
+          me — I don&apos;t bite.
+        </motion.p>
+
+        <motion.p
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.5 }}
-          className="flex flex-wrap items-center gap-3 mt-6"
+          className="mt-3 text-sm sm:text-base leading-loose max-w-2xl"
+          style={{ color: "var(--muted)" }}
         >
-          {[
-            { label: "GitHub", href: "#" },
-            { label: "LinkedIn", href: "#" },
-            { label: "Resume", href: "#" },
-          ].map((link) => (
-            <motion.a
-              key={link.label}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-dotted"
-              whileHover={{ y: -2 }}
-              transition={{ duration: 0.2 }}
-            >
-              {link.label}
-            </motion.a>
-          ))}
+          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="inline-tag">GitHub</a>
+          {" , "}
+          <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" className="inline-tag">LinkedIn</a>
+          {" , "}
+          <a href="#" target="_blank" rel="noopener noreferrer" className="inline-tag">Resume</a>
+          {" "}&mdash; all yours, no strings attached.
+        </motion.p>
+
+        {/* Available badge — mobile only, below intro */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.4 }}
+          className="flex sm:hidden items-center justify-center mt-6"
+        >
+          <div
+            className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium"
+            style={{
+              backgroundColor: "rgba(16, 185, 129, 0.1)",
+              border: "1px solid var(--accent)",
+              color: "var(--accent)",
+            }}
+          >
+            <span
+              className="w-2 h-2 rounded-full inline-block"
+              style={{
+                backgroundColor: "var(--accent)",
+                boxShadow: "0 0 6px var(--accent)",
+              }}
+            />
+            Available for freelance
+          </div>
         </motion.div>
       </div>
 

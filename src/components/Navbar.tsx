@@ -9,7 +9,7 @@ import ContactModal from "./ContactModal";
 
 const navLinks = [
   { label: "About", href: "/about" },
-  { label: "Projects", href: "#projects" },
+  { label: "Projects", href: "/projects" },
 ];
 
 export default function Navbar() {
@@ -33,7 +33,7 @@ export default function Navbar() {
         initial={{ y: -80 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="sticky top-0 z-50 pt-4"
+        className="z-50 pt-4"
         style={{
           background: "var(--navbar-bg)",
           backdropFilter: "blur(12px)",
@@ -67,19 +67,19 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Links */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-2">
             {navLinks.map((link) =>
               link.href.startsWith("#") ? (
                 <button
                   key={link.label}
                   onClick={() => handleNavClick(link.href)}
-                  className="btn-dotted cursor-pointer"
+                  className="btn-dotted nav-btn cursor-pointer"
                 >
                   {link.label}
                 </button>
               ) : (
                 <Link key={link.label} href={link.href}>
-                  <span className="btn-dotted cursor-pointer inline-block">
+                  <span className="btn-dotted nav-btn cursor-pointer inline-block">
                     {link.label}
                   </span>
                 </Link>
@@ -88,8 +88,7 @@ export default function Navbar() {
 
             <button
               onClick={() => setContactOpen(true)}
-              className="btn-dotted cursor-pointer"
-              style={{ color: "var(--accent)", borderColor: "var(--accent)" }}
+              className="btn-dotted nav-btn cursor-pointer"
             >
               Contact
             </button>
@@ -192,13 +191,13 @@ export default function Navbar() {
                     <button
                       key={link.label}
                       onClick={() => handleNavClick(link.href)}
-                      className="btn-dotted text-left cursor-pointer"
+                      className="btn-dotted nav-btn text-left cursor-pointer"
                     >
                       {link.label}
                     </button>
                   ) : (
                     <Link key={link.label} href={link.href} onClick={() => setMobileOpen(false)}>
-                      <span className="btn-dotted text-left cursor-pointer inline-block w-full">
+                      <span className="btn-dotted nav-btn text-left cursor-pointer inline-block w-full">
                         {link.label}
                       </span>
                     </Link>
@@ -209,8 +208,7 @@ export default function Navbar() {
                     setMobileOpen(false);
                     setContactOpen(true);
                   }}
-                  className="btn-dotted text-left cursor-pointer"
-                  style={{ color: "var(--accent)", borderColor: "var(--accent)" }}
+                  className="btn-dotted nav-btn text-left cursor-pointer"
                 >
                   Contact
                 </button>

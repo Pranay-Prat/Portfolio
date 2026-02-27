@@ -50,8 +50,8 @@
   --overlay-bg: rgba(0, 0, 0, 0.4);
   --hero-overlay: rgba(255, 255, 255, 0.5);
   --navbar-bg: rgba(255, 255, 255, 0.85);
-  --tag-bg: #333333;
-  --tag-text: #ffffff;
+  --tag-bg: #d0d0d0;
+  --tag-text: #333333;
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.1);
@@ -76,7 +76,7 @@ body {
   position: relative;
   max-width: 1000px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
   min-height: 100vh;
 }
 
@@ -107,7 +107,7 @@ body {
   padding: 0.4rem 1rem;
   border: 1px dashed var(--dotted-border);
   border-radius: 0.25rem;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 500;
   color: var(--foreground);
   background: transparent;
@@ -116,8 +116,59 @@ body {
 }
 
 .btn-dotted:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  background: var(--surface-hover);
+  border-color: var(--muted);
+  color: var(--foreground);
+}
+
+/* Navbar-specific: pointed edges + tighter padding + muted text */
+.nav-btn {
+  border-radius: 0;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+  color: var(--muted);
+}
+
+.nav-btn:hover {
+  color: var(--foreground);
+}
+
+/* ===== INLINE TAG LINKS (hero intro) ===== */
+.inline-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0 0.4rem;
+  background: var(--tag-bg);
+  border: none;
+  border-radius: 0.25rem;
+  font-size: inherit;
+  color: var(--tag-text);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  vertical-align: baseline;
+}
+
+.inline-tag:hover {
+  background: var(--surface-hover);
+  color: var(--foreground);
+}
+
+/* Bold highlighted name in intro */
+.inline-highlight {
+  color: var(--foreground);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--accent);
+}
+
+/* ===== FOOTER SOCIAL ICON HOVER ===== */
+.icon-btn:hover {
+  background: var(--surface-hover);
+  border-color: var(--muted) !important;
+  color: var(--foreground) !important;
 }
 
 /* ===== SCROLLBAR ===== */
