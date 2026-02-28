@@ -80,19 +80,19 @@ function ProjectCard({ project }: { project: Project }) {
         backgroundColor: "var(--background)",
         border: "1px dashed var(--dotted-border)",
       }}
-      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#070707")}
+      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(128, 128, 128, 0.06)")}
       onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--background)")}
     >
       <div className="flex flex-col md:flex-row">
         {/* Project image / preview area */}
         <div
-          className="w-full md:w-[45%] p-5 pr-2 flex items-center justify-center"
+          className="w-full md:w-[45%] p-4 md:pr-2 flex items-center justify-center"
         >
           <div
-            className="w-full rounded-lg overflow-hidden"
+            className="w-full rounded-sm overflow-hidden"
             style={{
               backgroundColor: "#111",
-              aspectRatio: "16 / 10",
+              aspectRatio: "16 / 9",
             }}
           >
             {/* Placeholder — replace with <Image> when screenshots are ready */}
@@ -105,13 +105,13 @@ function ProjectCard({ project }: { project: Project }) {
         </div>
 
         {/* Project details */}
-        <div className="flex-1 p-6 sm:p-7 md:pl-4 flex flex-col justify-between">
+        <div className="flex-1 p-5 sm:p-6 md:pl-4 flex flex-col justify-between">
           <div>
             {/* Title row with Live | GitHub */}
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-3">
               <h3
-                className="text-xl font-bold flex items-center gap-2"
-                style={{ color: "var(--foreground)" }}
+                className="text-2xl font-normal flex items-center gap-2"
+                style={{ color: "var(--foreground)", fontFamily: "var(--font-instrument-serif), serif" }}
               >
                 {project.title} <span>{project.emoji}</span>
               </h3>
@@ -121,7 +121,7 @@ function ProjectCard({ project }: { project: Project }) {
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-tag"
+                  className="inline-tag project-link"
                 >
                   Live
                 </a>
@@ -130,7 +130,7 @@ function ProjectCard({ project }: { project: Project }) {
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-tag"
+                  className="inline-tag project-link"
                 >
                   GitHub
                 </a>
@@ -139,7 +139,7 @@ function ProjectCard({ project }: { project: Project }) {
 
             {/* Description */}
             <p
-              className="text-sm leading-relaxed mb-5"
+              className="text-sm leading-relaxed mb-4"
               style={{ color: "var(--muted)" }}
             >
               {project.description}

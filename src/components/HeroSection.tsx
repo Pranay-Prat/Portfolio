@@ -67,20 +67,23 @@ export default function HeroSection() {
       </motion.div>
 
       {/* Intro text below hero card */}
-      <div className="mt-10 text-center sm:text-left px-4 sm:px-8">
+      <div className="mt-10 text-left px-4 sm:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
         >
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
+          <h1
+            className="text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight leading-tight"
+            style={{ fontFamily: "var(--font-instrument-serif), serif" }}
+          >
             Hi, I&apos;m{" "}
             <span style={{ color: "var(--foreground)" }}>Pranay</span>{" "}
             <span style={{ color: "var(--muted)" }}>&mdash;</span>
           </h1>
 
           <div
-            className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3 mt-3 text-sm font-medium"
+            className="flex flex-wrap items-center justify-start gap-2 sm:gap-3 mt-3 text-sm font-medium"
             style={{ color: "var(--muted)" }}
           >
             <span>frontend</span>
@@ -113,7 +116,7 @@ export default function HeroSection() {
         >
           Open to freelance gigs or full-time roles. Slide into my{" "}
           <a
-            href="https://x.com/"
+            href="https://x.com/PranayPrat"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-tag"
@@ -122,7 +125,7 @@ export default function HeroSection() {
           </a>{" "}
           or{" "}
           <a
-            href="mailto:your@email.com"
+            href="mailto:pranay.pratap15@gmail.com"
             className="inline-tag"
           >
             Email
@@ -137,11 +140,11 @@ export default function HeroSection() {
           className="mt-3 text-sm sm:text-base leading-loose max-w-2xl"
           style={{ color: "var(--muted)" }}
         >
-          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="inline-tag">GitHub</a>
+          <a href="https://github.com/Pranay-Prat" target="_blank" rel="noopener noreferrer" className="inline-tag">GitHub</a>
           {" , "}
-          <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" className="inline-tag">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/pranay-pratap15" target="_blank" rel="noopener noreferrer" className="inline-tag">LinkedIn</a>
           {" , "}
-          <a href="#" target="_blank" rel="noopener noreferrer" className="inline-tag">Resume</a>
+          <a href="https://drive.google.com/file/d/13DNTrv1eXAwGfouyVggtAApioSnW7iIK/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="inline-tag">Resume</a>
           {" "}&mdash; all yours, no strings attached.
         </motion.p>
 

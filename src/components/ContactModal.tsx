@@ -15,6 +15,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [activeField, setActiveField] = useState<string | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const nameInputRef = useRef<HTMLInputElement>(null);
 
@@ -46,13 +47,15 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
       setSubmitted(false);
       setFormData({ name: "", email: "", message: "" });
       onClose();
-    }, 2000);
+    }, 2500);
   };
 
-  const inputStyle = {
-    backgroundColor: "var(--surface)",
-    border: "1px solid var(--border-color)",
-    color: "var(--foreground)",
+  const getCurrentTime = () => {
+    return new Date().toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    });
   };
 
   return (
@@ -71,158 +74,256 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
         >
           <motion.div
             ref={modalRef}
-            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            initial={{ scale: 0.95, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+            exit={{ scale: 0.95, opacity: 0, y: 20 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="w-full max-w-lg rounded-2xl p-8 relative"
+            className="w-full max-w-lg relative overflow-hidden"
             style={{
-              backgroundColor: "var(--surface)",
-              border: "1px solid var(--border-color)",
-              boxShadow: "var(--shadow-lg)",
+              backgroundColor: "var(--background)",
+              border: "1px dashed var(--dotted-border)",
             }}
           >
-            {/* Close button */}
-            <motion.button
-              onClick={onClose}
-              className="absolute top-4 right-4 p-2 rounded-lg cursor-pointer"
-              style={{ color: "var(--muted)" }}
-              whileHover={{
-                color: "var(--foreground)",
-                backgroundColor: "var(--surface-hover)",
-              }}
-              whileTap={{ scale: 0.9 }}
-              aria-label="Close contact form"
+            {/* Terminal-style header bar */}
+            <div
+              className="flex items-center justify-between px-4 py-3"
+              style={{ borderBottom: "1px dashed var(--dotted-border)" }}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
-            </motion.button>
-
-            <h2
-              className="text-2xl font-bold mb-2"
-              style={{ color: "var(--foreground)" }}
-            >
-              Get in Touch
-            </h2>
-            <p
-              className="text-sm mb-6"
-              style={{ color: "var(--muted)" }}
-            >
-              Have a project in mind? Let&apos;s talk about it.
-            </p>
-
-            {submitted ? (
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                className="text-center py-8"
-              >
-                <div
-                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
-                  style={{ backgroundColor: "var(--accent)" }}
+              <div className="flex items-center gap-2">
+                  <button
+                    onClick={onClose}
+                    className="w-3 h-3 rounded-full bg-red-500/70 hover:bg-red-500 transition-colors cursor-pointer"
+                    aria-label="Close"
+                  />
+                <span
+                  className="text-xs ml-3 font-mono"
+                  style={{ color: "var(--muted)" }}
                 >
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                </div>
-                <p className="text-lg font-semibold" style={{ color: "var(--foreground)" }}>
-                  Message Sent!
-                </p>
-                <p className="text-sm mt-1" style={{ color: "var(--muted)" }}>
-                  I&apos;ll get back to you soon.
-                </p>
-              </motion.div>
-            ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                <div>
-                  <label
-                    htmlFor="contact-name"
-                    className="block text-sm font-medium mb-1.5"
-                    style={{ color: "var(--foreground)" }}
-                  >
-                    Name
-                  </label>
-                  <input
-                    ref={nameInputRef}
-                    id="contact-name"
-                    type="text"
-                    required
-                    placeholder="Your name"
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                    className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-200 focus:ring-2"
-                    style={{
-                      ...inputStyle,
-                      "--tw-ring-color": "var(--accent)",
-                    } as React.CSSProperties}
-                  />
-                </div>
+                  ~/contact
+                </span>
+              </div>
+              <span className="text-xs font-mono" style={{ color: "var(--muted)" }}>
+                {getCurrentTime()}
+              </span>
+            </div>
 
-                <div>
-                  <label
-                    htmlFor="contact-email"
-                    className="block text-sm font-medium mb-1.5"
-                    style={{ color: "var(--foreground)" }}
-                  >
-                    Email
-                  </label>
-                  <input
-                    id="contact-email"
-                    type="email"
-                    required
-                    placeholder="your@email.com"
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                    className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-200 focus:ring-2"
-                    style={{
-                      ...inputStyle,
-                      "--tw-ring-color": "var(--accent)",
-                    } as React.CSSProperties}
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="contact-message"
-                    className="block text-sm font-medium mb-1.5"
-                    style={{ color: "var(--foreground)" }}
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    id="contact-message"
-                    required
-                    rows={4}
-                    placeholder="Tell me about your project..."
-                    value={formData.message}
-                    onChange={(e) =>
-                      setFormData({ ...formData, message: e.target.value })
-                    }
-                    className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-200 resize-none focus:ring-2"
-                    style={{
-                      ...inputStyle,
-                      "--tw-ring-color": "var(--accent)",
-                    } as React.CSSProperties}
-                  />
-                </div>
-
-                <motion.button
-                  type="submit"
-                  className="w-full py-3 rounded-xl text-sm font-semibold text-white cursor-pointer mt-2"
-                  style={{ backgroundColor: "var(--accent)" }}
-                  whileHover={{ scale: 1.02, backgroundColor: "var(--accent-hover)" }}
-                  whileTap={{ scale: 0.98 }}
+            {/* Content */}
+            <div className="p-6 sm:p-8">
+              {submitted ? (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="py-8 text-center"
                 >
-                  Send Message
-                </motion.button>
-              </form>
-            )}
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.1 }}
+                    className="mb-4"
+                  >
+                    <span className="text-4xl">✓</span>
+                  </motion.div>
+                  <p
+                    className="text-base font-mono"
+                    style={{ color: "var(--foreground)" }}
+                  >
+                    Message delivered.
+                  </p>
+                  <p
+                    className="text-sm mt-2 font-mono"
+                    style={{ color: "var(--muted)" }}
+                  >
+                    I&apos;ll respond within 24h.
+                  </p>
+                </motion.div>
+              ) : (
+                <>
+                  {/* Header */}
+                  <div className="mb-6">
+                    <h2
+                      className="text-2xl font-normal mb-1"
+                      style={{
+                        color: "var(--foreground)",
+                        fontFamily: "var(--font-instrument-serif), serif",
+                      }}
+                    >
+                      Let&apos;s talk.
+                    </h2>
+                    <p className="text-sm" style={{ color: "var(--muted)" }}>
+                      Drop a message — I read every one.
+                    </p>
+                  </div>
+
+                  {/* Quick contact links */}
+                  <div
+                    className="flex items-center gap-3 mb-6 pb-6"
+                    style={{ borderBottom: "1px dashed var(--dotted-border)" }}
+                  >
+                    <a
+                      href="mailto:pranay.pratap15@gmail.com"
+                      className="inline-tag text-xs"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                      </svg>
+                      Email
+                    </a>
+                    <a
+                      href="https://x.com/PranayPrat"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-tag text-xs"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                      </svg>
+                      DM
+                    </a>
+                    <a
+                      href="https://www.linkedin.com/in/pranay-pratap15"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-tag text-xs"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                      </svg>
+                      LinkedIn
+                    </a>
+                  </div>
+
+                  {/* Form */}
+                  <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                    {/* Name & Email side by side */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label
+                          htmlFor="contact-name"
+                          className="block text-xs font-medium mb-2 font-mono"
+                          style={{
+                            color: activeField === "name" ? "var(--foreground)" : "var(--muted)",
+                            transition: "color 0.2s",
+                          }}
+                        >
+                          <span style={{ color: "var(--accent)" }}>→</span> name
+                        </label>
+                        <input
+                          ref={nameInputRef}
+                          id="contact-name"
+                          type="text"
+                          required
+                          placeholder="Pranay"
+                          value={formData.name}
+                          onFocus={() => setActiveField("name")}
+                          onBlur={() => setActiveField(null)}
+                          onChange={(e) =>
+                            setFormData({ ...formData, name: e.target.value })
+                          }
+                          className="w-full px-3 py-2.5 text-sm outline-none transition-all duration-200"
+                          style={{
+                            backgroundColor: "transparent",
+                            border: "1px dashed var(--dotted-border)",
+                            borderColor: activeField === "name" ? "var(--muted)" : undefined,
+                            color: "var(--foreground)",
+                          }}
+                        />
+                      </div>
+
+                      <div>
+                        <label
+                          htmlFor="contact-email"
+                          className="block text-xs font-medium mb-2 font-mono"
+                          style={{
+                            color: activeField === "email" ? "var(--foreground)" : "var(--muted)",
+                            transition: "color 0.2s",
+                          }}
+                        >
+                          <span style={{ color: "var(--accent)" }}>→</span> email
+                        </label>
+                        <input
+                          id="contact-email"
+                          type="email"
+                          required
+                          placeholder="you@example.com"
+                          value={formData.email}
+                          onFocus={() => setActiveField("email")}
+                          onBlur={() => setActiveField(null)}
+                          onChange={(e) =>
+                            setFormData({ ...formData, email: e.target.value })
+                          }
+                          className="w-full px-3 py-2.5 text-sm outline-none transition-all duration-200"
+                          style={{
+                            backgroundColor: "transparent",
+                            border: "1px dashed var(--dotted-border)",
+                            borderColor: activeField === "email" ? "var(--muted)" : undefined,
+                            color: "var(--foreground)",
+                          }}
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="contact-message"
+                        className="block text-xs font-medium mb-2 font-mono"
+                        style={{
+                          color: activeField === "message" ? "var(--foreground)" : "var(--muted)",
+                          transition: "color 0.2s",
+                        }}
+                      >
+                        <span style={{ color: "var(--accent)" }}>→</span> message
+                      </label>
+                      <textarea
+                        id="contact-message"
+                        required
+                        rows={4}
+                        placeholder="Tell me what you're building..."
+                        value={formData.message}
+                        onFocus={() => setActiveField("message")}
+                        onBlur={() => setActiveField(null)}
+                        onChange={(e) =>
+                          setFormData({ ...formData, message: e.target.value })
+                        }
+                        className="w-full px-3 py-2.5 text-sm outline-none transition-all duration-200 resize-none"
+                        style={{
+                          backgroundColor: "transparent",
+                          border: "1px dashed var(--dotted-border)",
+                          borderColor: activeField === "message" ? "var(--muted)" : undefined,
+                          color: "var(--foreground)",
+                        }}
+                      />
+                    </div>
+
+                    {/* Submit */}
+                    <div className="flex items-center justify-between mt-1">
+                      <span className="text-xs font-mono" style={{ color: "var(--muted)" }}>
+                        esc to close
+                      </span>
+                      <motion.button
+                        type="submit"
+                        className="px-6 py-2.5 text-sm font-medium cursor-pointer"
+                        style={{
+                          backgroundColor: "transparent",
+                          border: "1px dashed var(--dotted-border)",
+                          color: "var(--foreground)",
+                          transition: "all 0.2s ease",
+                        }}
+                        whileHover={{
+                          borderColor: "var(--foreground)",
+                        }}
+                        whileTap={{ scale: 0.97 }}
+                      >
+                        Send →
+                      </motion.button>
+                    </div>
+                  </form>
+                </>
+              )}
+            </div>
           </motion.div>
         </motion.div>
       )}

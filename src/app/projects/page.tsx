@@ -37,7 +37,7 @@ export default function ProjectsPage() {
             </motion.span>
           </Link>
 
-          <h1 className="text-2xl sm:text-3xl font-bold mt-4" style={{ color: "var(--foreground)" }}>
+          <h1 className="text-2xl sm:text-3xl font-normal mt-4" style={{ color: "var(--foreground)", fontFamily: "var(--font-instrument-serif), serif" }}>
             All Projects
           </h1>
           <p className="text-sm mt-2 max-w-xl" style={{ color: "var(--muted)" }}>
