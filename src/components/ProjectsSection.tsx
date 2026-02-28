@@ -75,49 +75,37 @@ const fadeInUp = {
 function ProjectCard({ project }: { project: Project }) {
   return (
     <div
-      className="group rounded-xl overflow-hidden"
+      className="group overflow-hidden transition-colors duration-300"
       style={{
-        backgroundColor: "var(--surface)",
-        border: "1px solid var(--border-color)",
+        backgroundColor: "var(--background)",
+        border: "1px dashed var(--dotted-border)",
       }}
+      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#070707")}
+      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--background)")}
     >
       <div className="flex flex-col md:flex-row">
         {/* Project image / preview area */}
         <div
-          className="relative w-full md:w-[42%] overflow-hidden"
-          style={{
-            minHeight: "260px",
-            backgroundColor: "#111",
-          }}
+          className="w-full md:w-[45%] p-5 pr-2 flex items-center justify-center"
         >
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-            {/* Mock screenshot area */}
-            <div
-              className="w-full max-w-[280px] rounded-lg p-4 mb-3"
-              style={{
-                backgroundColor: "rgba(255,255,255,0.05)",
-                border: "1px solid rgba(255,255,255,0.1)",
-              }}
-            >
-              <div className="flex items-center gap-1.5 mb-3">
-                <div className="w-2 h-2 rounded-full bg-red-500/60" />
-                <div className="w-2 h-2 rounded-full bg-yellow-500/60" />
-                <div className="w-2 h-2 rounded-full bg-green-500/60" />
-              </div>
+          <div
+            className="w-full rounded-lg overflow-hidden"
+            style={{
+              backgroundColor: "#111",
+              aspectRatio: "16 / 10",
+            }}
+          >
+            {/* Placeholder — replace with <Image> when screenshots are ready */}
+            <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center">
               <div className="text-3xl mb-2">{project.emoji}</div>
-              <p className="text-white text-base font-bold">{project.title}</p>
+              <p className="text-white text-sm font-bold">{project.title}</p>
               <p className="text-gray-500 text-[10px] mt-1">Add screenshot to public/projects/</p>
             </div>
           </div>
-          {/* When you have screenshots, use Next/Image:
-          <Image src={project.image} alt={project.title} fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, 42vw" loading="lazy"
-          /> */}
         </div>
 
         {/* Project details */}
-        <div className="flex-1 p-6 sm:p-7 flex flex-col justify-between">
+        <div className="flex-1 p-6 sm:p-7 md:pl-4 flex flex-col justify-between">
           <div>
             {/* Title row with Live | GitHub */}
             <div className="flex items-start justify-between mb-4">
@@ -128,21 +116,21 @@ function ProjectCard({ project }: { project: Project }) {
                 {project.title} <span>{project.emoji}</span>
               </h3>
 
-              <div className="flex items-center gap-0 shrink-0">
+              <div className="flex items-center gap-1 shrink-0 text-sm" style={{ color: "var(--muted)" }}>
                 <a
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-dotted text-xs py-1 px-2.5"
+                  className="inline-tag"
                 >
                   Live
                 </a>
-                <span className="mx-1.5 text-xs" style={{ color: "var(--muted)" }}>|</span>
+                <span className="mx-1" style={{ color: "var(--muted)" }}>|</span>
                 <a
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-dotted text-xs py-1 px-2.5"
+                  className="inline-tag"
                 >
                   GitHub
                 </a>

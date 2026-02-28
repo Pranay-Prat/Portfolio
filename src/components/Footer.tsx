@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 const socialLinks = [
@@ -46,8 +46,13 @@ const socialLinks = [
 export default function Footer() {
   const [visitorCount, setVisitorCount] = useState<number | null>(null);
   const [currentTime, setCurrentTime] = useState("");
+  const hasFired = useRef(false);
 
   useEffect(() => {
+    // Guard against React Strict Mode double-firing in dev
+    if (hasFired.current) return;
+    hasFired.current = true;
+
     // Check if already counted this session
     const counted = sessionStorage.getItem("visitor-counted");
 
