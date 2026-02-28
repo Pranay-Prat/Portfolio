@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 export interface Project {
   title: string;
-  emoji: string;
   description: string;
   image: string;
   technologies: string[];
@@ -15,34 +15,30 @@ export interface Project {
 
 export const allProjects: Project[] = [
   {
-    title: "EchoForms",
-    emoji: "📝",
+    title: "LineupLab",
     description:
-      "EchoForms is an AI-powered SaaS for effortless form creation via prompts. It offers real-time analytics, email notifications, and seamless data export, making form management efficient and user-friendly.",
-    image: "/projects/echoforms.png",
+      "Lineup Lab is a web app for football fans and coaches that makes it easy to create and customize team lineups. It features a simple drag-and-drop system to build different formations quickly and share the lineups with others.",
+    image: "/projects/LineupLab.png",
     technologies: [
-      "Next.js", "Tailwind CSS", "Drizzle ORM", "PostgreSQL", "NeonDB",
-      "Gemini LLM", "Clerk", "Zod", "Docker", "Razorpay", "Resend",
+      "Next.js","TypeScript", "Tailwind CSS", "Prisma ORM", "PostgreSQL", "Supabase","Zustand",
+      "React Dnd", "Zod", 
     ],
-    liveUrl: "#",
-    githubUrl: "#",
+    liveUrl: "https://football-lineup-maker.vercel.app/",
+    githubUrl: "https://github.com/Pranay-Prat/Lineup-Lab",
   },
   {
-    title: "ReportNow",
-    emoji: "🚨",
+    title: "Blogify",
     description:
-      "A secure platform for anonymous incident reporting, leveraging AI and real-time location tracking to enhance accuracy and efficiency.",
-    image: "/projects/reportnow.png",
+      "A high-performance full-stack blogging platform built with a monorepo architecture. It features secure authentication and an intuitive interface for effortless content management, leveraging Hono for rapid API delivery.",
+    image: "/projects/Blogify.png",
     technologies: [
-      "Next.js", "Tailwind CSS", "React Hook Form", "Zod", "NextAuth",
-      "Prisma", "PostgreSQL", "NeonDB", "Gemini LLM", "Here API", "Docker",
+      "React", "TypeScript", "Tailwind CSS", "Zod", "Hono","Prisma", "PostgreSQL", 
     ],
     liveUrl: "#",
     githubUrl: "#",
   },
   {
     title: "DevSync",
-    emoji: "🔄",
     description:
       "A real-time collaborative coding platform with live cursors, chat, and shared terminals for seamless remote pair programming.",
     image: "/projects/devsync.png",
@@ -54,7 +50,6 @@ export const allProjects: Project[] = [
   },
   {
     title: "CloudDash",
-    emoji: "☁️",
     description:
       "An infrastructure monitoring dashboard with real-time metrics, alerts, and multi-cloud support for DevOps teams.",
     image: "/projects/clouddash.png",
@@ -83,10 +78,10 @@ function ProjectCard({ project }: { project: Project }) {
       onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(128, 128, 128, 0.06)")}
       onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--background)")}
     >
-      <div className="flex flex-col md:flex-row">
+      <div className="flex flex-col md:flex-row md:items-stretch">
         {/* Project image / preview area */}
         <div
-          className="w-full md:w-[45%] p-4 md:pr-2 flex items-center justify-center"
+          className="w-full md:w-[45%] p-4 md:pr-2 md:pl-5 flex items-center justify-center"
         >
           <div
             className="w-full rounded-sm overflow-hidden"
@@ -95,28 +90,29 @@ function ProjectCard({ project }: { project: Project }) {
               aspectRatio: "16 / 9",
             }}
           >
-            {/* Placeholder — replace with <Image> when screenshots are ready */}
-            <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center">
-              <div className="text-3xl mb-2">{project.emoji}</div>
-              <p className="text-white text-sm font-bold">{project.title}</p>
-              <p className="text-gray-500 text-[10px] mt-1">Add screenshot to public/projects/</p>
-            </div>
+            <Image
+              src={project.image}
+              alt={project.title}
+              width={800}
+              height={450}
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
 
         {/* Project details */}
-        <div className="flex-1 p-5 sm:p-6 md:pl-4 flex flex-col justify-between">
+        <div className="flex-1 p-5 sm:p-6 md:pl-4 flex flex-col justify-between overflow-hidden">
           <div>
             {/* Title row with Live | GitHub */}
             <div className="flex items-start justify-between mb-3">
               <h3
-                className="text-2xl font-normal flex items-center gap-2"
+                className="text-3xl font-normal flex items-center gap-2"
                 style={{ color: "var(--foreground)", fontFamily: "var(--font-instrument-serif), serif" }}
               >
-                {project.title} <span>{project.emoji}</span>
+                {project.title}
               </h3>
 
-              <div className="flex items-center gap-1 shrink-0 text-sm" style={{ color: "var(--muted)" }}>
+              <div className="flex items-center gap-1 shrink-0 text-base" style={{ color: "var(--muted)" }}>
                 <a
                   href={project.liveUrl}
                   target="_blank"
@@ -139,7 +135,7 @@ function ProjectCard({ project }: { project: Project }) {
 
             {/* Description */}
             <p
-              className="text-sm leading-relaxed mb-4"
+              className="text-base leading-snug tracking-tight mb-4"
               style={{ color: "var(--muted)" }}
             >
               {project.description}
@@ -154,7 +150,7 @@ function ProjectCard({ project }: { project: Project }) {
                 {project.technologies.map((tech) => (
                   <span
                     key={tech}
-                    className="px-2 py-0.5 text-xs font-medium"
+                    className="px-2 py-0.5 text-sm font-medium"
                     style={{
                       backgroundColor: "var(--tag-bg)",
                       color: "var(--tag-text)",

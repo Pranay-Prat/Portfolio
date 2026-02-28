@@ -39,15 +39,47 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     return () => window.removeEventListener("keydown", handleEscape);
   }, [isOpen, onClose]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Contact form submitted:", formData);
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: "", email: "", message: "" });
-      onClose();
-    }, 2500);
+    setSending(true);
+    setError("");
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "3a9759df-35c6-48e1-8d27-a5d911a43cd1",
+          subject: `Portfolio Contact: ${formData.name}`,
+          from_name: formData.name,
+          replyto: formData.email,
+          ...formData,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setSubmitted(true);
+        setTimeout(() => {
+          setSubmitted(false);
+          setFormData({ name: "", email: "", message: "" });
+          onClose();
+        }, 2500);
+      } else {
+        setError("Failed to send. Try again or email me directly.");
+      }
+    } catch {
+      setError("Network error. Please try again.");
+    } finally {
+      setSending(false);
+    }
   };
 
   const getCurrentTime = () => {
@@ -298,6 +330,10 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       />
                     </div>
 
+                    {error && (
+                      <p className="text-xs text-red-400 mb-2">{error}</p>
+                    )}
+
                     {/* Submit */}
                     <div className="flex items-center justify-between mt-1">
                       <span className="text-xs font-mono" style={{ color: "var(--muted)" }}>
@@ -305,19 +341,20 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       </span>
                       <motion.button
                         type="submit"
-                        className="px-6 py-2.5 text-sm font-medium cursor-pointer"
+                        disabled={sending}
+                        className="px-6 py-2.5 text-sm font-medium cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                         style={{
                           backgroundColor: "transparent",
                           border: "1px dashed var(--dotted-border)",
                           color: "var(--foreground)",
                           transition: "all 0.2s ease",
                         }}
-                        whileHover={{
+                        whileHover={sending ? {} : {
                           borderColor: "var(--foreground)",
                         }}
-                        whileTap={{ scale: 0.97 }}
+                        whileTap={sending ? {} : { scale: 0.97 }}
                       >
-                        Send →
+                        {sending ? "Sending..." : "Send →"}
                       </motion.button>
                     </div>
                   </form>
