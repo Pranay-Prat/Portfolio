@@ -103,8 +103,7 @@ export default function HeroSection() {
         >
           They call me{" "}
           <span className="inline-highlight">Pranay</span>.
-          {" "}What kind of name is that? I craft smooth interfaces, power them
-          with logic, and deploy like a reflex.
+          {" "}I enjoy building clean interfaces and making them work with solid logic. I focus on learning, improving, and shipping projects step by step.
         </motion.p>
 
         <motion.p
