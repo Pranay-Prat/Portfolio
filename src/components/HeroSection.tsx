@@ -120,9 +120,9 @@ export default function HeroSection() {
           </a>{" "}
           me, I don&apos;t bite.{" "}
           <a href="https://github.com/Pranay-Prat" target="_blank" rel="noopener noreferrer" className="inline-tag ml-1">GitHub</a>
-          {" , "}
+          {" "}
           <a href="https://www.linkedin.com/in/pranay-pratap15" target="_blank" rel="noopener noreferrer" className="inline-tag">LinkedIn</a>
-          {" , "}
+          {" "}
           <a href="https://drive.google.com/file/d/13DNTrv1eXAwGfouyVggtAApioSnW7iIK/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="inline-tag">Resume</a>
           {" "} all yours, no strings attached.
         </motion.p>

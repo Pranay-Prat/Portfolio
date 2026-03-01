@@ -174,11 +174,12 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-  padding: 0 0.4rem;
+  padding: 0.1rem 0.4rem;
   background: var(--tag-bg);
   border: none;
   border-radius: 0.25rem;
-  font-size: inherit;
+  font-size: 0.95em;
+  line-height: 1.2;
   color: var(--tag-text);
   text-decoration: none;
   transition: all 0.2s ease;
