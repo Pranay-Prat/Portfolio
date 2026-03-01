@@ -35,7 +35,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   // Update this with your actual production URL after deployment
-  metadataBase: new URL("https://your-production-url.com"),
+  metadataBase: new URL("https://www.pranaypratap.dev/"),
   title: {
     default: "Pranay",
     template: "%s | Pranay",
