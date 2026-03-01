@@ -39,25 +39,11 @@ export default function Footer() {
     if (hasFired.current) return;
     hasFired.current = true;
 
-    // Check if already counted this session
-    const counted = sessionStorage.getItem("visitor-counted");
-
-    if (!counted) {
-      // First visit this session — increment
-      fetch("/api/visitors", { method: "POST" })
-        .then((res) => res.json())
-        .then((data) => {
-          setVisitorCount(data.count);
-          sessionStorage.setItem("visitor-counted", "true");
-        })
-        .catch(() => setVisitorCount(0));
-    } else {
-      // Already counted — just get current
-      fetch("/api/visitors")
-        .then((res) => res.json())
-        .then((data) => setVisitorCount(data.count))
-        .catch(() => setVisitorCount(0));
-    }
+    // Fetch and increment visitor count
+    fetch("/api/visitors")
+      .then((res) => res.json())
+      .then((data) => setVisitorCount(data.count))
+      .catch(() => setVisitorCount(0));
 
     // Live clock
     const updateTime = () => {
@@ -111,7 +97,7 @@ export default function Footer() {
         </div>
 
         {/* Visitors + Location */}
-        <div className="flex flex-col items-end gap-1">
+        <div className="flex flex-col items-center sm:items-end gap-1">
           <span className="text-sm" style={{ color: "var(--muted)" }}>
             Visitors{" "}
             <span style={{ color: "var(--foreground)", fontWeight: 600 }}>
