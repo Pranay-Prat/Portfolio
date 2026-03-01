@@ -34,31 +34,42 @@ export const allProjects: Project[] = [
     technologies: [
       "React", "TypeScript", "Tailwind CSS", "Zod", "Hono","Prisma", "PostgreSQL", 
     ],
-    liveUrl: "#",
-    githubUrl: "#",
+    liveUrl: "https://blogify-psi-tan.vercel.app/",
+    githubUrl: "https://github.com/Pranay-Prat/Blogify",
   },
   {
-    title: "DevSync",
+    title: "Ch4t",
     description:
-      "A real-time collaborative coding platform with live cursors, chat, and shared terminals for seamless remote pair programming.",
-    image: "/projects/devsync.png",
+      "A real-time messaging application built with React, Node.js, Express, and MongoDB. It supports bi-directional communication, image sharing through Cloudinary. The app features responsive design with TailwindCSS and global state management using Zustand ",
+    image: "/projects/Ch4t.png",
     technologies: [
-      "Next.js", "Socket.io", "Monaco Editor", "TypeScript", "Redis", "Docker",
+      "React", "ws", "Express", "MongoDB", "JavaScript", "Cloudinary", "Node.js",
     ],
-    liveUrl: "#",
-    githubUrl: "#",
+    liveUrl: "https://chat-app-one-wheat-35.vercel.app/",
+    githubUrl: "https://github.com/Pranay-Prat/Ch4t",
   },
   {
-    title: "CloudDash",
+    title: "UICraft",
     description:
-      "An infrastructure monitoring dashboard with real-time metrics, alerts, and multi-cloud support for DevOps teams.",
-    image: "/projects/clouddash.png",
+      "UICraft is an AI-powered platform that turns natural language prompts into production-ready React components. It offers real-time preview, a chat-based interface for iterations, and built-in authentication with theme support.",
+    image: "/projects/UICraft.png",
     technologies: [
-      "React", "D3.js", "Node.js", "GraphQL", "AWS SDK", "Terraform",
+      "Nextjs", "TanStack Query", "Inngest", "E2b", "Docker", "Gemini","Clerk","TypeScript"
     ],
-    liveUrl: "#",
-    githubUrl: "#",
+    liveUrl: "",
+    githubUrl: "https://github.com/Pranay-Prat/UICraft",
   },
+  {
+    title: "UIDAI Hackathon",
+    description:
+      "Built for a hackathon, I designed and developed the complete frontend of the Aadhaar Analytics Dashboard. I focused on creating an interactive UI with map-based drilldowns and detailed analytics views, handling the design and user experience while the rest was built by the team.",
+    image: "/projects/UIDAI.png",
+    technologies: [
+      "Nextjs", "TypeScript", "Tailwind CSS", "D3.js",
+    ],
+    liveUrl: "https://uidai-hackathon-phi.vercel.app/",
+    githubUrl: "https://github.com/Pranay-Prat/UIDAIHackathon",
+  }
 ];
 
 const fadeInUp = {
@@ -113,15 +124,19 @@ function ProjectCard({ project }: { project: Project }) {
               </h3>
 
               <div className="flex items-center gap-1 shrink-0 text-base" style={{ color: "var(--muted)" }}>
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-tag project-link"
-                >
-                  Live
-                </a>
-                <span className="mx-1" style={{ color: "var(--muted)" }}>|</span>
+                {project.liveUrl && project.liveUrl !== "#" && (
+                  <>
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-tag project-link"
+                    >
+                      Live
+                    </a>
+                    <span className="mx-1" style={{ color: "var(--muted)" }}>|</span>
+                  </>
+                )}
                 <a
                   href={project.githubUrl}
                   target="_blank"
@@ -172,7 +187,7 @@ export default function ProjectsSection() {
   const featured = allProjects.slice(0, 2);
 
   return (
-    <section id="projects" className="py-16 sm:py-24">
+    <section id="projects" className="pt-16 sm:pt-24 pb-8 sm:pb-8">
       {/* Section heading */}
       <motion.div {...fadeInUp} transition={{ duration: 0.5 }}>
         <h2
@@ -207,16 +222,37 @@ export default function ProjectsSection() {
       >
         <Link href="/projects">
           <motion.span
-            className="inline-flex items-center gap-2 text-sm font-medium cursor-pointer"
+            className="inline-flex items-center gap-2 text-sm font-medium cursor-pointer relative group pb-1"
             style={{ color: "var(--muted)" }}
-            whileHover={{ x: 4, color: "var(--foreground)" }}
+            whileHover="hover"
+            initial="initial"
+            animate="initial"
             transition={{ duration: 0.2 }}
           >
-            View all projects
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <span className="relative">
+              View all projects
+              {/* Hover Underline */}
+              <motion.span
+                className="absolute left-0 -bottom-1 h-[1px] bg-foreground w-full origin-left"
+                variants={{
+                  initial: { scaleX: 0 },
+                  hover: { scaleX: 1 },
+                }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                style={{ backgroundColor: "var(--foreground)" }}
+              />
+            </span>
+            <motion.svg 
+              width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+              variants={{
+                initial: { x: 0, color: "var(--muted)" },
+                hover: { x: 4, color: "var(--foreground)" }
+              }}
+              transition={{ duration: 0.2 }}
+            >
               <line x1="7" y1="17" x2="17" y2="7" />
               <polyline points="7 7 17 7 17 17" />
-            </svg>
+            </motion.svg>
           </motion.span>
         </Link>
       </motion.div>

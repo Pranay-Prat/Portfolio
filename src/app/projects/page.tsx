@@ -24,7 +24,7 @@ export default function ProjectsPage() {
         >
           <Link href="/">
             <motion.span
-              className="inline-flex items-center gap-2 text-sm font-medium mb-6 cursor-pointer"
+              className="inline-flex items-center gap-2 text-sm font-medium mb-3 cursor-pointer"
               style={{ color: "var(--muted)" }}
               whileHover={{ x: -4, color: "var(--accent)" }}
               transition={{ duration: 0.2 }}
@@ -37,11 +37,11 @@ export default function ProjectsPage() {
             </motion.span>
           </Link>
 
-          <h1 className="text-2xl sm:text-3xl font-normal mt-4" style={{ color: "var(--foreground)", fontFamily: "var(--font-instrument-serif), serif" }}>
+          <h1 className="text-2xl sm:text-4xl font-normal mt-2" style={{ color: "var(--foreground)", fontFamily: "var(--font-instrument-serif), serif" }}>
             All Projects
           </h1>
-          <p className="text-sm mt-2 max-w-xl" style={{ color: "var(--muted)" }}>
-            A collection of things I&apos;ve built — from SaaS platforms to developer tools.
+          <p className="text-base mt-2 max-w-xl" style={{ color: "var(--muted)" }}>
+            These projects are part of my learning journey, where I experiment with ideas and build real-world applications to improve my skills.
           </p>
         </motion.div>
 

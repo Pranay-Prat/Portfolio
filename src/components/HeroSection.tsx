@@ -83,7 +83,7 @@ export default function HeroSection() {
           </h1>
 
           <div
-            className="flex flex-wrap items-center justify-start gap-2 sm:gap-3 mt-3 text-sm font-medium"
+            className="flex flex-wrap items-center justify-start gap-2 sm:gap-3 text-base font-medium"
             style={{ color: "var(--muted)" }}
           >
             <span>frontend</span>
@@ -98,7 +98,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
-          className="mt-6 text-sm sm:text-base leading-relaxed max-w-2xl"
+          className="mt-2 text-sm sm:text-base leading-relaxed max-w-2xl"
           style={{ color: "var(--muted)" }}
         >
           They call me{" "}

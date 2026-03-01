@@ -65,11 +65,11 @@ export default function AboutPage() {
         </motion.div>
 
         {/* Bio */}
-        <motion.div {...fadeInUp} className="mt-8 max-w-2xl">
+        <motion.div {...fadeInUp} className="mt-4 max-w-2xl">
           <p className="text-sm sm:text-base leading-relaxed" style={{ color: "var(--muted)" }}>
             Hey! I&apos;m Pranay — a developer from Haridwar who loves building things for the web.
             I focus on crafting smooth, performant interfaces and solid backends. When I&apos;m not 
-            writing code, you&apos;ll find me exploring new tech, contributing to open source, or 
+            writing code, you&apos;ll find me exploring new tech, analysing football matches, or 
             just vibing with some good music.
           </p>
           <p className="text-sm sm:text-base leading-relaxed mt-4" style={{ color: "var(--muted)" }}>
