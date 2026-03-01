@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import SectionHeading from "./SectionHeading";
 
 export interface Project {
   title: string;
@@ -187,18 +188,10 @@ export default function ProjectsSection() {
   const featured = allProjects.slice(0, 2);
 
   return (
-    <section id="projects" className="pt-16 sm:pt-24 pb-8 sm:pb-8">
+    <section id="projects" className="pt-6 sm:pt-8 pb-8 sm:pb-8">
       {/* Section heading */}
       <motion.div {...fadeInUp} transition={{ duration: 0.5 }}>
-        <h2
-          className="inline-block text-base sm:text-lg font-semibold px-3 py-1"
-          style={{
-            border: "1px dashed var(--dotted-border)",
-            color: "var(--foreground)",
-          }}
-        >
-          Things I&apos;ve Built
-        </h2>
+        <SectionHeading>Things I&apos;ve Built</SectionHeading>
       </motion.div>
 
       {/* Project cards */}
@@ -207,7 +200,7 @@ export default function ProjectsSection() {
           <motion.div
             key={project.title}
             {...fadeInUp}
-            transition={{ duration: 0.6, delay: i * 0.15 }}
+            transition={{ duration: 0.6 }}
           >
             <ProjectCard project={project} />
           </motion.div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import SectionHeading from "./SectionHeading";
 
 const experiences = [
   {
@@ -35,15 +36,7 @@ export default function AboutSection() {
     <section id="about" className="py-16 sm:py-24">
       {/* Section heading — dotted border style */}
       <motion.div {...fadeInUp}>
-        <h2
-          className="inline-block text-base sm:text-lg font-semibold px-3 py-1"
-          style={{
-            border: "1px dashed var(--dotted-border)",
-            color: "var(--foreground)",
-          }}
-        >
-          Places I&apos;ve Made an Impact
-        </h2>
+        <SectionHeading>Places I&apos;ve Made an Impact</SectionHeading>
       </motion.div>
 
       {/* Experience cards */}

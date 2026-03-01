@@ -34,12 +34,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  // Update this with your actual production URL after deployment
+  metadataBase: new URL("https://your-production-url.com"),
   title: {
     default: "Pranay",
     template: "%s | Pranay",
   },
   description:
-    "Frontend developer crafting smooth interfaces, powering them with logic, and deploying like a reflex.",
+    "Fullstack developer crafting smooth interfaces and powering them with logic.",
   keywords: [
     "portfolio",
     "developer",
@@ -53,9 +55,27 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Pranay | Portfolio",
     description:
-      "Frontend developer crafting smooth interfaces, powering them with logic, and deploying like a reflex.",
+      "Fullstack developer crafting smooth interfaces and powering them with logic.",
     type: "website",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Pranay - Full-Stack Developer",
+      }
+    ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pranay | Portfolio",
+    description:
+      "Fullstack developer crafting smooth interfaces and powering them with logic.",
+    images: ["/og.png"],
+  },
+  icons: {
+    icon: "/favicon.ico",
+  }
 };
 
 export default function RootLayout({

@@ -8,6 +8,7 @@ const GitHubCalendar = dynamic(
   { ssr: false }
 );
 import { useTheme } from "./ThemeProvider";
+import SectionHeading from "./SectionHeading";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 25 },
@@ -21,15 +22,7 @@ export default function GithubContributions() {
 
   return (
     <motion.div {...fadeInUp} transition={{ duration: 0.5, delay: 0.3 }} >
-      <h2
-        className="inline-block text-base sm:text-lg font-semibold px-3 py-1 mb-6"
-        style={{
-          border: "1px dashed var(--dotted-border)",
-          color: "var(--foreground)",
-        }}
-      >
-        My Contributions
-      </h2>
+      <SectionHeading className="mb-6">My Contributions</SectionHeading>
 
       <div 
         className="p-4 sm:p-6 w-full flex justify-center items-center"

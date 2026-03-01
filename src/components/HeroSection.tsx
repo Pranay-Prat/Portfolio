@@ -10,7 +10,7 @@ export default function HeroSection() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
-        className="relative rounded-2xl overflow-hidden"
+        className="relative rounded-2xl overflow-hidden w-full h-[200px] sm:h-[300px] md:h-[350px]"
         style={{
           border: "1px dashed var(--dotted-border)",
           backgroundColor: "var(--surface)",
@@ -18,52 +18,18 @@ export default function HeroSection() {
       >
         {/* Video / Animated background */}
         <div className="absolute inset-0 overflow-hidden">
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #0a0a0a 100%)",
-              backgroundSize: "400% 400%",
-              animation: "heroGradient 12s ease infinite",
-            }}
-          />
-          {/* Uncomment below when you have hero-video.mp4 in public/ */}
-          {/* <video autoPlay muted loop playsInline preload="none"
-            className="absolute inset-0 w-full h-full object-cover"
+          <video autoPlay muted loop playsInline preload="auto"
+            className="absolute inset-0 w-full h-full object-cover object-top"
           >
-            <source src="/hero-video.mp4" type="video/mp4" />
-          </video> */}
+            <source src="/1.mp4" type="video/mp4" />
+          </video>
           <div
             className="absolute inset-0"
             style={{ background: "var(--hero-overlay)", opacity: 0.3 }}
           />
         </div>
 
-        {/* Available badge only */}
-        <div
-          className="relative z-10 flex items-end justify-end p-6 sm:p-8 min-h-[180px] sm:min-h-[300px]"
-        >
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.6, duration: 0.4 }}
-            className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium"
-            style={{
-              backgroundColor: "rgba(16, 185, 129, 0.1)",
-              border: "1px solid var(--accent)",
-              color: "var(--accent)",
-            }}
-          >
-            <span
-              className="w-2 h-2 rounded-full inline-block"
-              style={{
-                backgroundColor: "var(--accent)",
-                boxShadow: "0 0 6px var(--accent)",
-              }}
-            />
-            Available for freelance
-          </motion.div>
-        </div>
+
       </motion.div>
 
       {/* Intro text below hero card */}
@@ -73,14 +39,37 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
         >
-          <h1
-            className="text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight leading-tight"
-            style={{ fontFamily: "var(--font-instrument-serif), serif" }}
-          >
-            Hi, I&apos;m{" "}
-            <span style={{ color: "var(--foreground)" }}>Pranay</span>{" "}
-            <span style={{ color: "var(--muted)" }}>&mdash;</span>
-          </h1>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <h1
+              className="text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight leading-tight"
+              style={{ fontFamily: "var(--font-instrument-serif), serif" }}
+            >
+              Hi, I&apos;m{" "}
+              <span style={{ color: "var(--foreground)" }}>Pranay</span>{" "}
+              <span style={{ color: "var(--muted)" }}>&mdash;</span>
+            </h1>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.6, duration: 0.4 }}
+              className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium shrink-0"
+              style={{
+                backgroundColor: "rgba(16, 185, 129, 0.1)",
+                border: "1px solid var(--accent)",
+                color: "var(--accent)",
+              }}
+            >
+              <span
+                className="w-2 h-2 rounded-full inline-block"
+                style={{
+                  backgroundColor: "var(--accent)",
+                  boxShadow: "0 0 6px var(--accent)",
+                }}
+              />
+              Available for freelance
+            </motion.div>
+          </div>
 
           <div
             className="flex flex-wrap items-center justify-start gap-2 sm:gap-3 text-base font-medium"
@@ -102,15 +91,15 @@ export default function HeroSection() {
           style={{ color: "var(--muted)" }}
         >
           They call me{" "}
-          <span className="inline-highlight">Pranay</span>.
-          {" "}I enjoy building clean interfaces and making them work with solid logic. I focus on learning, improving, and shipping projects step by step.
+          <span className="inline-highlight">PP</span>.
+          {" "}I build full-stack apps — keeping the frontends clean and the backends solid. Just building, learning, and shipping.
         </motion.p>
 
         <motion.p
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.5 }}
-          className="mt-4 text-sm sm:text-base leading-loose max-w-2xl"
+          className="mt-4 text-sm sm:text-lg leading-loose max-w-2xl"
           style={{ color: "var(--muted)" }}
         >
           Open to freelance gigs or full-time roles. Slide into my{" "}
@@ -129,17 +118,8 @@ export default function HeroSection() {
           >
             Email
           </a>{" "}
-          me — I don&apos;t bite.
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.5 }}
-          className="mt-3 text-sm sm:text-base leading-loose max-w-2xl"
-          style={{ color: "var(--muted)" }}
-        >
-          <a href="https://github.com/Pranay-Prat" target="_blank" rel="noopener noreferrer" className="inline-tag">GitHub</a>
+          me — I don&apos;t bite.{" "}
+          <a href="https://github.com/Pranay-Prat" target="_blank" rel="noopener noreferrer" className="inline-tag ml-1">GitHub</a>
           {" , "}
           <a href="https://www.linkedin.com/in/pranay-pratap15" target="_blank" rel="noopener noreferrer" className="inline-tag">LinkedIn</a>
           {" , "}
