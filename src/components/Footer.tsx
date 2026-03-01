@@ -95,8 +95,10 @@ export default function Footer() {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 icon-btn"
+              className="flex items-center justify-center p-2 icon-btn rounded-md"
               style={{
+                width: "36px",
+                height: "36px",
                 color: "var(--muted)",
                 border: "1px dashed var(--dotted-border)",
                 transition: "all 0.2s ease",
