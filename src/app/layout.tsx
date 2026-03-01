@@ -4,6 +4,7 @@ import { Instrument_Serif, Geist_Mono } from "next/font/google";
 import ThemeProvider from "@/components/ThemeProvider";
 import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 
 const satoshi = localFont({
   src: [
@@ -89,6 +90,7 @@ export default function RootLayout({
         <ThemeProvider>
           <SmoothScroll>{children}</SmoothScroll>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
