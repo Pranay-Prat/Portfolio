@@ -1,36 +1,35 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <section id="hero" className="pt-12 pb-8">
-      {/* Hero Card with video background */}
+    <section id="hero" className="pt-10 pb-8 sm:pt-2">
+      {/* Mobile Avatar replacing video playback */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-        className="relative rounded-2xl overflow-hidden w-full h-[200px] sm:h-[300px] md:h-[350px]"
-        style={{
-          border: "1px dashed var(--dotted-border)",
-          backgroundColor: "var(--surface)",
-        }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="flex sm:hidden justify-center mb-2"
       >
-        {/* Video / Animated background */}
-        <div className="absolute inset-0 overflow-hidden">
-          <video autoPlay muted loop playsInline preload="auto"
-            className="absolute inset-0 w-full h-full object-cover object-top"
-          >
-            <source src="/1.mp4" type="video/mp4" />
-          </video>
-          <div
-            className="absolute inset-0"
-            style={{ background: "var(--hero-overlay)", opacity: 0.3 }}
+        <div
+          className="w-28 h-28 rounded-full overflow-hidden"
+          style={{
+            border: "1px dashed var(--dotted-border)",
+          }}
+        >
+          <Image
+            src="/avatar.png"
+            alt="Avatar"
+            width={112}
+            height={112}
+            className="object-cover w-full h-full"
+            priority
           />
         </div>
-
-
       </motion.div>
+
 
       {/* Intro text below hero card */}
       <div className="mt-10 text-left px-4 sm:px-8">

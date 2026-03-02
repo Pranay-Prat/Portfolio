@@ -40,7 +40,7 @@ export default function Navbar() {
       >
         <div className="flex items-center justify-between pb-4">
           {/* Avatar as logo, links to home */}
-          <Link href="/">
+          <Link href="/" className="hidden sm:block">
             <motion.div
               className="flex items-center gap-2 cursor-pointer"
               whileHover={{ scale: 1.05 }}
@@ -59,13 +59,14 @@ export default function Navbar() {
                   height={36}
                   className="object-cover w-full h-full"
                   priority
+                  unoptimized
                 />
               </div>
             </motion.div>
           </Link>
 
           {/* Navigation Links */}
-          <div className="flex items-center gap-2 text-[13px] sm:text-sm">
+          <div className="flex items-center gap-2 text-[13px] sm:text-sm ml-auto">
             {navLinks.map((link) =>
               link.href.startsWith("#") ? (
                 <button
